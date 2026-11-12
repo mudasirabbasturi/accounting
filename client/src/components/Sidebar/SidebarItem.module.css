@@ -1,0 +1,273 @@
+.menuItem {
+    position: relative;
+    list-style: none;
+    margin: 2px 8px;
+}
+
+.nestedItem {
+    margin: 0;
+}
+
+.menuHeader {
+    display: flex;
+    align-items: center;
+    height: 42px;
+    padding: 0 12px;
+    cursor: pointer;
+    color: var(--text-secondary);
+    border-radius: 10px;
+    transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+    user-select: none;
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+}
+
+.nestedHeader {
+    height: 36px;
+    font-size: 13px;
+    border-radius: 8px;
+}
+
+/* Hover: subtle glow instead of harsh color change */
+.menuHeader:hover {
+    background-color: rgba(79, 70, 229, 0.06);
+    color: var(--primary-color);
+    box-shadow: 0 0 0 1px rgba(79, 70, 229, 0.08), 0 2px 8px rgba(79, 70, 229, 0.06);
+}
+
+.activeParent {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.miniHeader {
+    justify-content: center;
+    padding: 0;
+    margin: 4px 0;
+    border-radius: 10px;
+    height: 46px;
+}
+
+/* Icon with glow & thin stroke */
+.icon {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 24px;
+    transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.04));
+}
+
+.icon svg {
+    stroke-width: 1.5 !important;
+    transition: all 0.18s ease;
+}
+
+/* Mini Sidebar: make icon bigger and thin */
+.miniHeader .icon {
+    font-size: 24px;
+    min-width: 32px;
+}
+
+.miniHeader .icon svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 1.5 !important;
+}
+
+/* Icon glow on hover and active */
+.menuHeader:hover .icon {
+    filter: drop-shadow(0 0 6px rgba(79, 70, 229, 0.35));
+    transform: scale(1.06);
+}
+
+.activeParent .icon,
+.activeLink .icon {
+    filter: drop-shadow(0 0 8px rgba(79, 70, 229, 0.4));
+}
+
+.charFallback {
+    font-size: 12px;
+    font-weight: 700;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-color);
+    border-radius: 7px;
+    color: var(--text-muted);
+    border: 1px solid var(--border-color);
+    transition: all 0.18s ease;
+}
+
+.menuHeader:hover .charFallback {
+    border-color: rgba(79, 70, 229, 0.3);
+    color: var(--primary-color);
+}
+
+.title {
+    margin-left: 12px;
+    flex: 1;
+    opacity: 0.9;
+}
+
+.subLabel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.subLabel::before {
+    content: '✔';
+    font-size: 16px;
+    margin-right: 10px;
+    color: var(--text-muted);
+    opacity: 0.5;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.18s ease;
+}
+
+.menuHeader:hover .subLabel::before {
+    color: var(--primary-color);
+    opacity: 1;
+}
+
+.chevron {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    color: var(--text-muted);
+    transition: color 0.18s ease;
+}
+
+.menuHeader:hover .chevron {
+    color: var(--primary-color);
+}
+
+/* Inline Submenu (Expanded) */
+.inlineSubmenu {
+    list-style: none;
+    padding: 0;
+    border-left: 1.5px solid rgba(79, 70, 229, 0.12);
+    position: relative;
+    margin-left: 2px;
+}
+
+/* Guide lines for deeper levels */
+.inlineSubmenu .inlineSubmenu {
+    border-left: 1px solid rgba(79, 70, 229, 0.08);
+    margin-left: 14px;
+}
+
+.menuLink {
+    text-decoration: none;
+    display: block;
+    color: inherit;
+}
+
+/* Active Link - refined glow */
+.activeLink .menuHeader {
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(79, 70, 229, 0.06) 100%) !important;
+    color: var(--primary-color) !important;
+    box-shadow: inset 0 0 0 1px rgba(79, 70, 229, 0.15), 0 2px 12px rgba(79, 70, 229, 0.1) !important;
+}
+
+.activeLink .chevron,
+.activeLink .charFallback {
+    color: var(--primary-color) !important;
+}
+
+.activeLink .charFallback {
+    background-color: #ffffff;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px rgba(79, 70, 229, 0.2);
+}
+
+/* Flyout (Mini Mode) */
+.flyout {
+    position: fixed;
+    left: 72px;
+    width: 220px;
+    background-color: #ffffff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.04);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    z-index: 1100;
+    padding: 8px 0;
+    animation: slideIn 0.2s ease-out;
+    backdrop-filter: blur(12px);
+}
+
+.flyoutHeader {
+    padding: 8px 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+    font-size: 14px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 4px;
+}
+
+.flyoutList {
+    padding: 4px 0;
+    list-style: none;
+}
+
+.flyoutItem {
+    padding: 8px 16px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-decoration: none;
+    display: block;
+    border-radius: 6px;
+    margin: 2px 8px;
+}
+
+.flyoutItem:hover {
+    color: var(--primary-color);
+    background-color: rgba(79, 70, 229, 0.06);
+    box-shadow: 0 0 0 1px rgba(79, 70, 229, 0.06);
+}
+
+.flyoutActive {
+    color: var(--primary-color);
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(79, 70, 229, 0.05) 100%);
+    font-weight: 600;
+    box-shadow: inset 0 0 0 1px rgba(79, 70, 229, 0.12);
+}
+
+.flyoutSubGroup {
+    padding: 4px 0;
+}
+
+.flyoutSubHeader {
+    padding: 4px 16px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

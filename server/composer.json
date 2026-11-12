@@ -1,0 +1,14 @@
+{
+    "name": "enterprise/accounting-server",
+    "description": "Double-entry Accounting & Inventory Management Server",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Core\\": "core/",
+            "App\\": "app/"
+        }
+    },
+    "require": {
+        "php": ">=8.1"
+    }
+}

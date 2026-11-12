@@ -1,0 +1,38 @@
+DirectoryIndex client/dist/index.html index.php index.html
+<IfModule mod_mime.c>
+    AddType application/javascript .js .mjs
+    AddType text/css .css
+</IfModule>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Pass Authorization Header to PHP (Required for Bearer Token on Apache / cPanel / PHP-FPM)
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # 1. Route API requests to PHP backend
+    RewriteRule ^api/(.*)$ server/public/index.php [QSA,L]
+    RewriteRule ^api$ server/public/index.php [QSA,L]
+
+    # 2. Uploaded media routing
+    RewriteRule ^uploads/(.*)$ server/public/uploads/$1 [L]
+
+    # 3. If the file exists directly in root, serve it
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # 4. If the file exists inside client/dist/ (assets, icons, logos in client/dist/)
+    RewriteRule ^assets/(.*)$ client/dist/assets/$1 [L]
+    RewriteRule ^(AS-LOGO\.png|AS-ICON\.png|favicon\..*|vite\.svg)$ client/dist/$1 [L]
+
+    # 5. SPA Fallback:
+    # If root index.html exists, serve it
+    RewriteCond %{DOCUMENT_ROOT}/index.html -f
+    RewriteRule ^ index.html [L]
+
+    # Otherwise serve client/dist/index.html
+    RewriteRule ^ client/dist/index.html [L]
+</IfModule>

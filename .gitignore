@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+vendor/
+
+# Environment files
+server/.env
+client/.env
+client/.env.local
+*.env
+!*.env.example
+
+# Logs, uploads and cache
+server/storage/logs/*.log
+server/public/uploads/
+*.log
+
+# Editor and OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

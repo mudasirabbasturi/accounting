@@ -1,0 +1,52 @@
+.layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex: 1;
+    padding-top: 48px;
+    /* Header height */
+}
+
+.mainContent {
+    flex: 1;
+    background-color: var(--bg-dim);
+    transition: margin-left 0.2s ease-in-out;
+    min-height: calc(100vh - 48px);
+}
+
+.expanded {
+    margin-left: 260px;
+}
+
+.mini {
+    margin-left: 72px;
+}
+
+.hidden {
+    margin-left: 0;
+}
+
+.mobileMain {
+    margin-left: 0 !important;
+}
+
+.backdrop {
+    position: fixed;
+    top: 48px;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 48px);
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 950;
+    /* Between Sidebar (900->update) and Header (1000) */
+}
+
+.contentInner {
+    /* Empty container styling if needed in future */
+    padding: 24px;
+    height: 100%;
+}
